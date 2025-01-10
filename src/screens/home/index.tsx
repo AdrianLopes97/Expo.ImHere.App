@@ -7,7 +7,17 @@ export function Home() {
   const participants = ['Adrian Lopes', 'Cintia Avelar','Pedro Henrique','Isabel Luz', 'Eliel Silva','Tatiane Lopes','Matheus Henrique','Davi Luca','Lorenzo Gabriel'];
 
   function handleParticipantAdd() {
-    console.log('Adicionar participante');
+    Alert.alert('Adicionar participante', 'Deseja realmente adicionar o participante XXXX?', 
+      [ 
+        { 
+          text: 'Cancelar',
+          style: 'cancel' 
+        }, 
+        { 
+          text: 'Adicionar', 
+          onPress: () => Alert.alert('Adicionado', 'Participante adicionado com sucesso!') 
+        } 
+      ]);
   }
 
   function handleParticipantRemove(name: string) {
