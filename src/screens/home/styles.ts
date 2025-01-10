@@ -22,6 +22,8 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 16,
     padding: 16,
+    flex: 1,
+    marginRight: 12,
   },
   buttonText: {
     fontSize: 24,
@@ -36,5 +38,10 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     borderRadius: 8,
   },
-
+  form: {
+    flexDirection: 'row',
+    width: '100%',
+    marginTop: 36,
+    marginBottom: 42,
+  }
 });

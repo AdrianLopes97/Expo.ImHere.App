@@ -14,16 +14,18 @@ export function Home() {
       <Text style={styles.eventDate}>
         Segunda-Feira, 06 de Janeiro de 2025.
       </Text>
-      <TextInput
-        placeholder="Digite o nome do evento"
-        placeholderTextColor="#555"
-        style={styles.input}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
-        <Text style={styles.buttonText}>
-          +
-        </Text>
-      </TouchableOpacity>
+      <View style={styles.form}>
+        <TextInput
+          placeholder="Digite o nome do evento"
+          placeholderTextColor="#555"
+          style={styles.input}
+        />
+        <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
+          <Text style={styles.buttonText}>
+            +
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
