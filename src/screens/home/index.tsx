@@ -1,4 +1,4 @@
-import { Text, View, TextInput, TouchableOpacity, FlatList } from "react-native";
+import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from "react-native";
 import { styles } from "./styles";
 import { Participant } from "../../components/participant";
 
@@ -11,7 +11,16 @@ export function Home() {
   }
 
   function handleParticipantRemove(name: string) {
-    console.log(`Remover participante ${name}`);
+    Alert.alert('Remover participante', `Deseja remover ${name}?`, [
+      {
+        text: 'Não',
+        style: 'cancel',
+      },
+      {
+        text: 'Sim',
+        onPress: () => Alert.alert('Deletado', `${name} foi removido com sucesso!`),
+      },
+    ]);
   }
 
   return (
@@ -35,7 +44,7 @@ export function Home() {
         </TouchableOpacity>
       </View>
       <FlatList
-        data={[]}
+        data={participants}
         keyExtractor={item => item}
         renderItem={({ item }) => (
           <Participant name={item} onRemove={() => handleParticipantRemove(item)} />
