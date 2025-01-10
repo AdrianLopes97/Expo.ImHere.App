@@ -25,7 +25,8 @@ export const styles = StyleSheet.create({
         width: 56,
         alignItems: 'center',
         justifyContent: 'center',
-        marginTop: 16,
+        marginTop: 5,
+        marginBottom: 5,
         borderRadius: 8,
     },
 }); 

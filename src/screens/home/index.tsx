@@ -1,6 +1,7 @@
 import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from "react-native";
 import { styles } from "./styles";
 import { Participant } from "../../components/participant";
+import dayjs from "dayjs";
 
 export function Home() {
 
@@ -36,14 +37,14 @@ export function Home() {
   return (
     <View style={styles.container}>
       <Text style={styles.eventName}>
-        Nome do evento:
+        Oração para o 2025 do Grêmio:
       </Text>
       <Text style={styles.eventDate}>
-        Segunda-Feira, 06 de Janeiro de 2025.
+        {dayjs().format('dddd, DD [de] MMMM [de] YYYY')}
       </Text>
       <View style={styles.form}>
         <TextInput
-          placeholder="Digite o nome do evento"
+          placeholder="Digite o nome do participante"
           placeholderTextColor="#555"
           style={styles.input}
         />
