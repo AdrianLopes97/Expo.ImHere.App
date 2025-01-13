@@ -2,13 +2,24 @@ import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from "react-
 import { styles } from "./styles";
 import { Participant } from "../../components/participant";
 import dayjs from "dayjs";
+import { useState } from "react";
 
 export function Home() {
 
-  const participants = ['Adrian Lopes', 'Cintia Avelar','Pedro Henrique','Isabel Luz', 'Eliel Silva','Tatiane Lopes','Matheus Henrique','Davi Luca','Lorenzo Gabriel'];
+  const [participants, setParticipants] = useState<string[]>([]);
+  const [newParticipant, setNewParticipant] = useState('');
 
   function handleParticipantAdd() {
-    Alert.alert('Adicionar participante', 'Deseja realmente adicionar o participante XXXX?', 
+
+    if (!newParticipant) {
+      return Alert.alert('Erro', 'Digite o nome do(a) participante para adicionar!');
+    }
+
+    if(participants.includes(newParticipant)) {
+      return Alert.alert('Erro', 'Este participante já foi adicionado!');
+    }
+
+    Alert.alert('Adicionar participante', `Deseja realmente adicionar o(a) participante ${newParticipant}?`, 
       [ 
         { 
           text: 'Cancelar',
@@ -16,12 +27,23 @@ export function Home() {
         }, 
         { 
           text: 'Adicionar', 
-          onPress: () => Alert.alert('Adicionado', 'Participante adicionado com sucesso!') 
+          onPress: () => (
+            setParticipants([...participants, newParticipant]),
+            setNewParticipant(''),
+            Alert.alert('Adicionado', 'Participante adicionado com sucesso!')
+          )
         } 
       ]);
   }
 
   function handleParticipantRemove(name: string) {
+
+    const participantIndex = participants.indexOf(name);
+
+    if(participantIndex === -1) {
+      return Alert.alert('Erro', 'Participante não encontrado!');
+    }
+
     Alert.alert('Remover participante', `Deseja remover ${name}?`, [
       {
         text: 'Não',
@@ -29,7 +51,11 @@ export function Home() {
       },
       {
         text: 'Sim',
-        onPress: () => Alert.alert('Deletado', `${name} foi removido com sucesso!`),
+        onPress: () => (
+          participants.splice(participantIndex, 1),
+          setParticipants([...participants]),
+          Alert.alert('Deletado', `${name} foi removido com sucesso!`)
+        ),
       },
     ]);
   }
@@ -47,6 +73,8 @@ export function Home() {
           placeholder="Digite o nome do participante"
           placeholderTextColor="#555"
           style={styles.input}
+          onChangeText={setNewParticipant}
+          value={newParticipant}
         />
         <TouchableOpacity style={styles.button} onPress={handleParticipantAdd}>
           <Text style={styles.buttonText}>
